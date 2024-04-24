@@ -22,19 +22,24 @@
   
   <script>
     // Initialize Leaflet map
-    var map = L.map('map').setView([51.505, -0.09], 13); // Set initial center coordinates and zoom level
+    var map = L.map('map').setView([0, 0], 2); // Set initial center coordinates and zoom level
 
     // Add tile layer (OpenStreetMap)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Add a marker for each store location
-    L.marker([51.5, -0.09]).addTo(map) // Example store location (latitude, longitude)
-      .bindPopup('Store 1'); // Example store name
+    // Add markers for store locations
+    var storeLocations = [
+      { name: 'Dallas, Texas', location: [32.7767, -96.7970] },
+      { name: 'Uruguay, Montevideo', location: [-34.9011, -56.1645] },
+      { name: 'Bern, Bern', location: [46.9480, 7.4474] },
+      { name: 'Turkey, Izmir', location: [38.4192, 27.1287] }
+    ];
 
-    L.marker([51.51, -0.1]).addTo(map) // Example store location (latitude, longitude)
-      .bindPopup('Store 2'); // Example store name
+    storeLocations.forEach(function(store) {
+      L.marker(store.location).addTo(map).bindPopup(store.name);
+    });
   </script>
 </body>
 </html>
